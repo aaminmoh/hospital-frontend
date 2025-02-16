@@ -481,67 +481,69 @@ const Doctors = () => {
           </div>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredDoctors.map((doctor) => (
-            <div
-              key={doctor._id}
-              className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-200 overflow-hidden"
-            >
-              <div className="p-6 bg-white rounded-lg shadow-md border relative">
-                {/* Edit & Delete Buttons (Top-Right Corner) */}
-                <div className="absolute top-4 right-4 flex space-x-2">
-                  <Tooltip target=".edit-btn-card" position="top" />
-                  <button
-                    className="edit-btn-card inline-flex items-center p-2 rounded-lg text-blue-600 hover:text-blue-700
-      transition duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                    onClick={() => handleEditDoctor(doctor._id)}
-                    data-pr-tooltip="Edit "
-                  >
-                    <FaEdit className="h-5 w-5" />
-                  </button>
-
-                  <Tooltip target=".delete-btn-card" position="top" />
-                  <button
-                    className="delete-btn-card inline-flex items-center p-2 rounded-lg text-red-600 hover:text-red-700
-      transition duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-                    onClick={() => handleDelete(doctor._id)}
-                    data-pr-tooltip="Delete "
-                  >
-                    <FaTrash className="h-5 w-5" />
-                  </button>
-                </div>
-
-                {/* Doctor Info */}
-                <div className="flex items-center space-x-4">
-                  {/* Profile Icon */}
-                  <div className="h-14 w-14 rounded-full bg-indigo-100 flex items-center justify-center">
-                    <UserIcon className="h-7 w-7 text-indigo-600" />
+        // {viewMode === "card" ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            {filteredDoctors.map((doctor) => (
+              <div
+                key={doctor._id}
+                className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-200 overflow-hidden"
+              >
+                <div className="p-4 sm:p-6 bg-white rounded-lg shadow-md border relative">
+                  {/* Edit & Delete Buttons (Top-Right Corner) */}
+                  <div className="absolute top-2 sm:top-4 right-2 sm:right-4 flex space-x-1 sm:space-x-2">
+                    <Tooltip target=".edit-btn-card" position="top" />
+                    <button
+                      className="edit-btn-card inline-flex items-center p-1.5 sm:p-2 rounded-lg text-blue-600 hover:text-blue-700
+                        transition duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                      onClick={() => handleEditDoctor(doctor._id)}
+                      data-pr-tooltip="Edit"
+                    >
+                      <FaEdit className="h-4 w-4 sm:h-5 sm:w-5" />
+                    </button>
+        
+                    <Tooltip target=".delete-btn-card" position="top" />
+                    <button
+                      className="delete-btn-card inline-flex items-center p-1.5 sm:p-2 rounded-lg text-red-600 hover:text-red-700
+                        transition duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                      onClick={() => handleDelete(doctor._id)}
+                      data-pr-tooltip="Delete"
+                    >
+                      <FaTrash className="h-4 w-4 sm:h-5 sm:w-5" />
+                    </button>
                   </div>
-
-                  <div>
-                    {/* Doctor Name */}
-                    <h2 className="text-lg font-semibold text-gray-900">
-                      {doctor.name}
-                    </h2>
-
-                    {/* Specialization Badge */}
-                    <span className="mt-1 inline-block px-3 py-1 text-sm font-medium rounded-full bg-green-100 text-green-800">
-                      {doctor.specialization}
-                    </span>
+        
+                  {/* Doctor Info */}
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
+                    {/* Profile Icon */}
+                    <div className="h-12 w-12 sm:h-14 sm:w-14 rounded-full bg-indigo-100 flex items-center justify-center">
+                      <UserIcon className="h-6 w-6 sm:h-7 sm:w-7 text-indigo-600" />
+                    </div>
+        
+                    <div className="flex-1 min-w-0">
+                      {/* Doctor Name */}
+                      <h2 className="text-base sm:text-lg font-semibold text-gray-900 truncate">
+                        {doctor.name}
+                      </h2>
+        
+                      {/* Specialization Badge */}
+                      <span className="mt-1 inline-block px-2 sm:px-3 py-1 text-xs sm:text-sm font-medium rounded-full bg-green-100 text-green-800">
+                        {doctor.specialization}
+                      </span>
+                    </div>
                   </div>
-                </div>
-
-                {/* Contact Info */}
-                <div className="mt-4 text-sm text-gray-600">
-                  <p className="flex items-center">
-                    <EnvelopeIcon className="h-5 w-5 text-gray-400 mr-2" />
-                    {doctor.email}
-                  </p>
+        
+                  {/* Contact Info */}
+                  <div className="mt-3 sm:mt-4 text-xs sm:text-sm text-gray-600">
+                    <p className="flex items-center">
+                      <EnvelopeIcon className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400 mr-2 flex-shrink-0" />
+                      <span className="truncate">{doctor.email}</span>
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        // ) : null}
       )}
 
       {/* Add/Edit Doctor Modal */}
